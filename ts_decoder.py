@@ -23,7 +23,6 @@ class TSDecoder():
     def decode(self, message):
         if self.check_valid(message):
             return message[0:9]
-        
         candidates = [self.flip_bit(message, i) for i in range(len(message))]
         candidates = list(filter(self.check_valid, candidates))
         if len(candidates) == 0:
