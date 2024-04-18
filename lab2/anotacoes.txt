@@ -1,0 +1,36 @@
+x = (1 0 0 0 1 1 1)
+     (  K  ) (N-K)
+
+K -> número de bits de informação
+N -> tamanho da palavra código
+N-K -> número de bits de paridade
+
+x*H^t = 0 
+
+(Slide 12 LDPC Lecture 1)
+(j, k) regular JDPC Code 
+j -> one's in each column
+k -> one's in each row
+
+(Slide 15 LDPC Lecture 1)
+A Tanner Graph is a bipartite graph which represents the parity check 
+matrix of an error correcting code.
+
+N = v-nodes (variable nodes) (circles) = número de colunas
+na matriz H
+
+N-K = M = número de c-nodes (check nodes) (squares) = número
+de linhas na matriz H
+
+dv = número de ramos que saem de cada v-node para a camada CND
+= número de 1s nas colunas = j
+
+dc = número de ramos que saem de cada c-node para a camada VND
+= número de 1s nas linhas = k
+
+There is an edge between bit node i and check node j if there 
+is a one in row i and column j of H
+
+Número de bits = número de colunas (ou linhas em H^t) = N
+
+Taxa do código = R = 1 - j/k = 1 - dv/dc
