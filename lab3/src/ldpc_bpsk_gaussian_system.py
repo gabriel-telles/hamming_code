@@ -1,6 +1,21 @@
-from belief_propagation import generate_ldpc_matrix, BeliefPropagation
+from belief_propagation import *
 from gaussian_channel import GaussianChannel
 import numpy as np
+
+def generate_ldpc_matrix(dv, dc, N):
+    M = N*dv/dc
+    rows = int(M/dv)
+    cols = N
+    matrix = np.zeros((rows, cols)).astype(int)
+    for j in range(cols):
+        matrix[j//dc][j] = 1
+    
+    permutations = []
+    for i in range(dv-1):
+        permutation = np.random.permutation(matrix.T).T
+        permutations.append(permutation)
+
+    return np.concatenate((matrix, *permutations), axis=0)
 
 class LdpcBpskGaussianSystem:
     def __init__(self, N0, dv=3, dc=7, N=98, max_iter=10):

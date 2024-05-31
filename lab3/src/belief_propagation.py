@@ -1,21 +1,6 @@
 from math import inf
 import numpy as np
 
-def generate_ldpc_matrix(dv, dc, N):
-    M = N*dv/dc
-    rows = int(M/dv)
-    cols = N
-    matrix = np.zeros((rows, cols)).astype(int)
-    for j in range(cols):
-        matrix[j//dc][j] = 1
-    
-    permutations = []
-    for i in range(dv-1):
-        permutation = np.random.permutation(matrix.T).T
-        permutations.append(permutation)
-
-    return np.concatenate((matrix, *permutations), axis=0)
-
 class BeliefPropagation:
     def __init__(self, ldpc_matrix):
         self.ldpc_matrix = ldpc_matrix
