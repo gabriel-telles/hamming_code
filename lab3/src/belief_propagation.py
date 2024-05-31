@@ -1,7 +1,7 @@
 from math import inf
 import numpy as np
 
-def generate_parity_matrix(dv, dc, N):
+def generate_ldpc_matrix(dv, dc, N):
     M = N*dv/dc
     rows = int(M/dv)
     cols = N
