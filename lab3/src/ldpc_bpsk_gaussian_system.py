@@ -1,4 +1,4 @@
-from belief_propagation import *
+from belief_propagation import BeliefPropagation
 from gaussian_channel import GaussianChannel
 import numpy as np
 
