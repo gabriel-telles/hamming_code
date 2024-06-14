@@ -1,3 +1,4 @@
+from networkx import sigma
 import numpy as np
 
 class GaussianChannel:
@@ -7,7 +8,8 @@ class GaussianChannel:
     
     def transmit_LLR(self, bits):
         symbols = GaussianChannel.bits_to_symbols(bits, self.Eb)
-        return (2 / self.sigma ** 2) * (symbols + np.random.normal(0, self.sigma, len(symbols)))
+        self.channel_llr =  (2 / self.sigma ** 2) * (symbols + np.random.normal(0, self.sigma, len(symbols)))
+        return self.channel_llr
     
     @staticmethod
     def bits_to_symbols(bits, Eb):

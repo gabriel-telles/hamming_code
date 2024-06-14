@@ -1,6 +1,7 @@
 from belief_propagation import BeliefPropagation
 from gaussian_channel import GaussianChannel
 import numpy as np
+from copy import deepcopy
 
 def generate_ldpc_matrix(dv, dc, N):
     M = N*dv/dc
@@ -26,7 +27,13 @@ class LdpcBpskGaussianSystem:
         
     def apply_noise_and_decode(self):
         bits = np.zeros(self.__N)
-        channel_llr = self.__channel.transmit_LLR(bits)
-        return self.__belief_propagation.decode(channel_llr, self.__max_iter)
+        self.channel_llr = self.__channel.transmit_LLR(bits)
+        return self.__belief_propagation.decode(self.channel_llr, self.__max_iter)
+    
+    def get_uncoded_bits(self):
+        Lf = deepcopy(self.channel_llr)
+        Lf[Lf > 0] = 0
+        Lf[Lf < 0] = 1 
+        return Lf # uncoded_bits
     
     

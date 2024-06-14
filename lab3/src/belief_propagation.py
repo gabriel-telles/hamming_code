@@ -9,12 +9,12 @@ class BeliefPropagation:
         self.nodes_llr = np.zeros_like(self.ldpc_matrix)
         self.channel_llr_matrix = np.tile(channel_llr, (self.ldpc_matrix.shape[0], 1))
         iterations_counter = 1
-        while True:            
+        while True:         
             self.__transmit_v_nodes_messages()
-            if iterations_counter == max_iter or self.__check_parity():
-                return self.__decide_bits()
             self.__transmit_c_nodes_messages()
             iterations_counter += 1
+            if iterations_counter == max_iter or self.__check_parity():
+                return self.__decide_bits()
         
     def __transmit_v_nodes_messages(self):
         sum_cols = np.tile(self.nodes_llr.sum(axis=0), (self.nodes_llr.shape[0], 1))
@@ -32,7 +32,7 @@ class BeliefPropagation:
                     sign_product = np.prod(np.sign(row_except_j_and_zero))
                     nodes_llr_aux[i][j] = min_module * sign_product
         self.nodes_llr = nodes_llr_aux
-                
+
     def __check_parity(self):
         for i in range(self.nodes_llr.shape[0]):
             row = self.nodes_llr[i]
