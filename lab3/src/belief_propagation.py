@@ -12,9 +12,9 @@ class BeliefPropagation:
         while True:         
             self.__transmit_v_nodes_messages()
             self.__transmit_c_nodes_messages()
-            iterations_counter += 1
             if iterations_counter == max_iter or self.__check_parity():
                 return self.__decide_bits()
+            iterations_counter += 1
         
     def __transmit_v_nodes_messages(self):
         sum_cols = np.tile(self.nodes_llr.sum(axis=0), (self.nodes_llr.shape[0], 1))
