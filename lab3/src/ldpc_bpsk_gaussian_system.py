@@ -18,8 +18,8 @@ def generate_ldpc_matrix(dv, dc, N):
     return np.concatenate((matrix, *permutations), axis=0)
 
 class LdpcBpskGaussianSystem:
-    def __init__(self, N0, dv=3, dc=7, N=98, max_iter=10):
-        self.__channel = GaussianChannel(N0)
+    def __init__(self, N0, Eb=1, dv=3, dc=7, N=98, max_iter=10):
+        self.__channel = GaussianChannel(N0, Eb)
         self.__belief_propagation = BeliefPropagation(generate_ldpc_matrix(dv, dc, N))
         self.__N = N
         self.__max_iter = max_iter
