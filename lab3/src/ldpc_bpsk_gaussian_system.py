@@ -1,6 +1,7 @@
 from belief_propagation import BeliefPropagation
 from gaussian_channel import GaussianChannel
 import numpy as np
+import csv
 from copy import deepcopy
 
 def generate_ldpc_matrix(dv, dc, N):
@@ -17,6 +18,20 @@ def generate_ldpc_matrix(dv, dc, N):
         permutations.append(permutation)
 
     return np.concatenate((matrix, *permutations), axis=0)
+
+
+def generate_ldpc_csv(dv, dc, N, filename):
+    ldpc_matrix = generate_ldpc_matrix(dv, dc, N)
+    
+    graph_representation = []
+    for i in range(N):
+        connected_nodes = np.where(ldpc_matrix[:, i] == 1)[0] + 1  # +1 to convert to 1-based index
+        graph_representation.append(connected_nodes.tolist())
+    
+    with open(filename, 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerows(graph_representation)
+
 
 class LdpcBpskGaussianSystem:
     def __init__(self, N0, Eb=1, dv=3, dc=7, N=98, max_iter=10):
