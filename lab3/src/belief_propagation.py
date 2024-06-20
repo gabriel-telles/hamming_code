@@ -11,9 +11,9 @@ class BeliefPropagation:
         iterations_counter = 1
         while True:         
             self.__transmit_v_nodes_messages()
-            self.__transmit_c_nodes_messages()
             if iterations_counter == max_iter or self.__check_parity():
                 return self.__decide_bits()
+            self.__transmit_c_nodes_messages()
             iterations_counter += 1
         
     def __transmit_v_nodes_messages(self):

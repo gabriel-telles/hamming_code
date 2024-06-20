@@ -1,4 +1,3 @@
-from networkx import sigma
 import numpy as np
 
 class GaussianChannel:
