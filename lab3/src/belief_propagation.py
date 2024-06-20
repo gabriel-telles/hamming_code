@@ -1,4 +1,3 @@
-from math import inf
 import numpy as np
 
 class BeliefPropagation:
