@@ -46,6 +46,8 @@ class LdpcBpskGaussianSystem:
         return self.__belief_propagation.decode(self.channel_llr, self.__max_iter)
     
     def get_uncoded_bits(self):
+        bits = np.zeros(self.__N)
+        self.channel_llr = self.__channel.transmit_LLR(bits)
         Lf = deepcopy(self.channel_llr)
         Lf[Lf > 0] = 0
         Lf[Lf < 0] = 1 
