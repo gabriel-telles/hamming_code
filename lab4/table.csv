@@ -1,6 +1,0 @@
-Codificação,RSR Operacional (Eb/N0),Taxa,RSR exigida,Diferença
-BPSK não codificado,8.7 dB,1,4.8 dB,3.9 dB
-Hamming,5.8 dB,4/7,0.8 dB,5.0 dB
-LDPC bit flipping,5.1 dB,4/7,0.8 dB,4.3 dB
-LDPC Belief Propagation 4/7,-0.1 dB,4/7,0.8 dB,-0.9 dB
-LDPC Belief Propagation 3/6,-1.0 dB,1/2,0.0 dB,-1.0 dB
